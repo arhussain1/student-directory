@@ -1,17 +1,27 @@
-# Create an Array to hold all the student names
-students = [
-  {name: "Dr Hannibal Lecter", cohort: :november},
-  {name: "Darth Vader", cohort: :november},
-  {name: "Nurse Ratched", cohort: :november},
-  {name: "Michael Corleone", cohort: :november},
-  {name: "Alex DeLarge", cohort: :november},
-  {name: "The Wicked Witch of the West", cohort: :november},
-  {name: "Terminator", cohort: :november},
-  {name: "Freddy Krueger", cohort: :november},
-  {name: "The Joker", cohort: :november},
-  {name: "Joffery Baratheon", cohort: :november},
-  {name: "Norman Bates", cohort: :november}
-]
+# Lets add user input to make the user build the
+# # student directory with student names rather than 
+# # hardcoding the student names into the hash
+
+def input_students
+  puts "Please enter the names of the students"
+  puts "To finish, just hit return twice"
+  # create an empty array
+  students = []
+  # use user input to get the first name
+  name = gets.chomp
+  # the below reads as 
+  # while the name variable (above) is not empty
+  # repeat the code in this while loop
+  while !name.empty? do
+    # add the student given to us as a hash to the array
+    students << {name: name, cohort: :november}
+    puts "Now we have #{students.count} students"
+    # get the next student
+    name = gets.chomp
+  end
+  # return the array of students once the person is done
+  students
+end
 
 # We are going to break this code down using methods
 # Lets start with the print_header method
@@ -39,6 +49,9 @@ def print_footer(names)
 end
 
 # Nothing will happen until we call the methods above
+# Lets begin by getting the users input for the hash of student
+# then save it to the variable students
+students = input_students
 print_header
 print(students)
 print_footer(students)
