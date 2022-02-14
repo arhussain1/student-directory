@@ -13,15 +13,37 @@ students = [
   "Norman Bates"
 ]
 
-# Then print the names
-puts "The students of Villains Academy"
-puts "--------------"
+# We are going to break this code down using methods
+# Lets start with the print_header method
 
-# Now lets use the .each method to iterate through the
-# students array and print each name
-students.each do |student|
-  puts student
+# This represents the default header that will always
+# be present on the top of the codes output
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------------"
 end
 
-# At the end we can add the total number of students
-puts "Overall, we have #{students.count} great students"
+# Next lets create the print method with 1 argument 'names'
+# This will handle printing all the names of our students
+def print(names)
+  names.each do |name|
+    puts name
+  end
+end
+
+# Finally lets create the print_footer method
+# This will print the total number of students at the end
+# of our output. It will have one argument 'names'
+def print_footer(names)
+  puts "Overall, we have #{names.count} great students"
+end
+
+# Nothing will happen until we call the methods above
+print_header
+print(students)
+print_footer(students)
+
+# Notice how much easier the last few lines are to read
+# it's almost like english
+#
+# Even though we used more lines of code this is a better solution
