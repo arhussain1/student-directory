@@ -27,10 +27,8 @@ end
 
 # Next lets create the print method with 1 argument 'names'
 def print(students)
-  puts "Enter the letter to filter names by"
-  letter = gets.chomp
   students.each_with_index do |student, number|
-    if student[:name].start_with?(letter.upcase)
+    if student[:name].length < 12
       puts "#{number + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
