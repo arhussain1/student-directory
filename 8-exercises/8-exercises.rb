@@ -10,7 +10,7 @@ def input_students
   
   while !name.empty? do
     # add the student given to us as a hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name.capitalize, cohort: :november}
     puts "Now we have #{students.count} students"
     # get the next student
     name = gets.chomp
@@ -27,8 +27,12 @@ end
 
 # Next lets create the print method with 1 argument 'names'
 def print(students)
+  puts "Enter the letter to filter names by"
+  letter = gets.chomp
   students.each_with_index do |student, number|
-    puts "#{number + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    if student[:name].start_with?(letter.upcase)
+      puts "#{number + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 
