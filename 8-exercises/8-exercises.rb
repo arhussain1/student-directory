@@ -11,13 +11,8 @@ def input_students
     puts "To finish, just hit return twice"
     name = gets.chomp
     break if name.empty?
-    puts "Now their hobby"
-    hobby = gets.chomp
-    puts "Now their country of birth"
-    country = gets.chomp
-
     # add the student given to us as a hash to the array
-    students << {name: name.capitalize, cohort: :november, hobby: hobby, birth_country: country }
+    students << {name: name.capitalize, cohort: :november}
     puts "Now we have #{students.count} students"
   end
   # return the array of students once the person is done
@@ -33,7 +28,8 @@ end
 # Next lets create the print method with 1 argument 'names'
 def print(students)
   students.each_with_index do |student, number|  
-    puts "#{number + 1}. #{student[:name]} (#{student[:cohort]} cohort) Born in #{student[:birth_country]} and loves #{student[:hobby]}" 
+    output = "#{number + 1}. #{student[:name]} (#{student[:cohort]} cohort)" 
+    puts output.center(40)
   end
 end
 
