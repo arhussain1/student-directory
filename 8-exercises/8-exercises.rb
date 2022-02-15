@@ -27,10 +27,10 @@ end
 
 # Next lets create the print method with 1 argument 'names'
 def print(students)
-  students.each_with_index do |student, number|
-    if student[:name].length < 12
-      puts "#{number + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
+  index = 0
+  while index < students.length do
+    puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"  
+    index += 1
   end
 end
 
