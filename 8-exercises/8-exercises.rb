@@ -47,23 +47,45 @@ end
 
 # Next lets create the print method with 1 argument 'names'
 def print(students)
+  
+  # organise everyone by their cohort and store them in sorted_by_cohort 
+  sorted_by_cohort = {}
+
+  students.each do |student|
+    cohort = student[:cohort]
+
+    if sorted_by_cohort[cohort] == nil
+      sorted_by_cohort[cohort] = []
+    end
+
+    sorted_by_cohort[cohort].push(student[:name])
+  end
+
   # Ask what cohort the user wishes to see
   puts "Please enter the cohort you wish to view hit return to view all students"
   user_input = gets.chomp.downcase.capitalize.to_sym
   
-  # create an empty array called chosen and map the cohort info onto it
-  chosen = []
+  puts "\n\n\n" 
+  print_header
+  puts
   
-  students.map do |student|
-    if student[:cohort] == user_input || user_input == :"" 
-      chosen.push(student)
+  # Now print that cohort
+  sorted_by_cohort.each do |cohort, list|
+    if user_input == :""
+      puts "#{cohort} Cohort\n "
+      list.each do |student|
+        puts student 
+      end
+      puts
+    elsif cohort == user_input
+      puts "#{cohort} Cohort\n"
+      list.each do |student|
+        puts student
+      end
+      puts
     end
   end
 
-  # Now print out the list of student from the chosen array
-  chosen.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
 end
 
 # Finally lets create the print_footer method
@@ -78,7 +100,6 @@ end
 # Lets begin by getting the users input for the hash of student
 # then save it to the variable students
 students = input_students
-print_header
 print(students)
 print_footer(students)
 
