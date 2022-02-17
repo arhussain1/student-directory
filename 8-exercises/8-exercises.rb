@@ -68,7 +68,11 @@ end
 
 # Finally lets create the print_footer method
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  # create a placeholder
+  placeholder =
+  # figure out whether we should use plural or singular
+  names.count > 1 ? placeholder = "students" : placeholder = "student"
+  puts "Overall, we have #{names.count} great #{placeholder}"
 end
 
 # Lets begin by getting the users input for the hash of student
