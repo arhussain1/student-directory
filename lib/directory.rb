@@ -103,6 +103,7 @@ def print_menu
   puts "Choose from the options below:"
   puts "1. Input a new student"
   puts "2. See current students"
+  puts "3. Save the list to students.csv"
   puts "9. Exit"
 end
 
@@ -124,6 +125,8 @@ def process(selection)
     input_students
   when "2"
     show_students
+  when "3"
+    save_students
   when "9"
     # Exit the program
     exit
@@ -138,6 +141,18 @@ def interactive_menu
     print_menu
     process(gets.chomp)
   end
+end
+
+def save_students
+  # open the file
+  file = File.open("students.csv", "w")
+  # iterate over students and save each student to the file in csv
+  @students.each do |student|
+    student_info = [student[:name], student[:cohort]]
+    file.puts(student_info.join(","))
+  end
+  # close the file
+  file.close
 end
 
 interactive_menu
