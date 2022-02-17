@@ -9,9 +9,9 @@ def input_students
 
   while true do
     puts "Name: "
-    name = gets.chomp
+    name = gets.strip
     puts "Cohort: "
-    cohort = gets.chomp
+    cohort = gets.strip
 
     # Create a break for no entries situation
     if name.empty? && cohort.empty?
@@ -25,7 +25,7 @@ def input_students
     # Check for typos for cohort variable
     while !typo_check.include?(cohort.downcase.capitalize)
       puts "Enter Cohort again or input 'No entry': "
-      cohort = gets.chomp
+      cohort = gets.strip
     end
 
     # format the name given by the user
@@ -63,7 +63,7 @@ def print(students)
 
   # Ask what cohort the user wishes to see
   puts "Please enter the cohort you wish to view hit return to view all students"
-  user_input = gets.chomp.downcase.capitalize.to_sym
+  user_input = gets.strip.downcase.capitalize.to_sym
   
   puts "\n\n\n" 
   print_header
