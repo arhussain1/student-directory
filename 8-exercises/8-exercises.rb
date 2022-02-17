@@ -27,9 +27,12 @@ def input_students
       puts "Enter Cohort again or input 'No entry': "
       cohort = gets.chomp
     end
+
+    # format the name given by the user
+    name_formatted = name.downcase.split(" ").each{|word| word.capitalize!}.join(" ")
     
     # add the student given to us as a hash to the array
-    students << {name: name.downcase.capitalize, cohort: cohort.downcase.capitalize.to_sym}
+    students << {name: name_formatted, cohort: cohort.downcase.capitalize.to_sym}
     puts "Now we have #{students.count} students"
   end
   # return the array of students once the person is done
@@ -44,7 +47,21 @@ end
 
 # Next lets create the print method with 1 argument 'names'
 def print(students)
-  students.each do |student|
+  # Ask what cohort the user wishes to see
+  puts "Please enter the cohort you wish to view"
+  user_input = gets.chomp.downcase.capitalize.to_sym
+
+  # create an empty array called chosen and map the cohort info onto it
+  chosen = []
+  
+  students.map do |student|
+    if student[:cohort] == user_input
+      chosen.push(student)
+    end
+  end
+
+  # Now print out the list of student from the chosen array
+  chosen.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
