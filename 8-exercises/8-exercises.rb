@@ -48,14 +48,14 @@ end
 # Next lets create the print method with 1 argument 'names'
 def print(students)
   # Ask what cohort the user wishes to see
-  puts "Please enter the cohort you wish to view"
+  puts "Please enter the cohort you wish to view hit return to view all students"
   user_input = gets.chomp.downcase.capitalize.to_sym
-
+  
   # create an empty array called chosen and map the cohort info onto it
   chosen = []
   
   students.map do |student|
-    if student[:cohort] == user_input
+    if student[:cohort] == user_input || user_input == :"" 
       chosen.push(student)
     end
   end
