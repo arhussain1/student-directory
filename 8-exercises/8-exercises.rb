@@ -100,8 +100,11 @@ end
 # Lets begin by getting the users input for the hash of student
 # then save it to the variable students
 students = input_students
-print(students)
-print_footer(students)
+
+if students.length >= 1
+  print(students)
+  print_footer(students)
+end
 
 # Notice how much easier the last few lines are to read
 # it's almost like english
