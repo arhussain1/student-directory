@@ -40,13 +40,11 @@ def input_students
   end
 end
 
-# This represents the default header that will always
 def print_header
   puts "The students of Villains Academy"
   puts "-------------------"
 end
 
-# Next lets create the print method with 1 argument 'names'
 def print_students_list
 
   # organise everyone by their cohort and store them in sorted_by_cohort
@@ -104,6 +102,7 @@ def print_menu
   puts "1. Input a new student"
   puts "2. See current students"
   puts "3. Save the list to students.csv"
+  puts "4. Load the list from students.csv"
   puts "9. Exit"
 end
 
@@ -127,6 +126,8 @@ def process(selection)
     show_students
   when "3"
     save_students
+  when "4"
+    load_students
   when "9"
     # Exit the program
     exit
@@ -154,5 +155,18 @@ def save_students
   # close the file
   file.close
 end
+
+def load_students
+  file = File.open("students.csv", "r")
+  file.readlines.each do |line|
+    # each line has student info in the form 'name,cohort'
+    name, cohort = line.chomp.split(",") 
+    # use the variables to add them to @students in hash form
+    @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+end
+
+
 
 interactive_menu
