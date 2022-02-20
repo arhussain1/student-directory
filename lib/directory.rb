@@ -12,9 +12,9 @@ def input_students
 
   while true do
     puts "Name: "
-    name = gets.strip
+    name = STDIN.gets.strip
     puts "Cohort: "
-    cohort = gets.strip
+    cohort = STDIN.gets.strip
 
     # Create a break for no entries situation
     if name.empty? && cohort.empty?
@@ -28,7 +28,7 @@ def input_students
     # Check for typos for cohort variable
     while !typo_check.include?(cohort.downcase.capitalize)
       puts "Enter Cohort again or input 'No entry': "
-      cohort = gets.strip
+      cohort = STDIN.gets.strip
     end
 
     # format the name given by the user
@@ -62,7 +62,7 @@ def print_students_list
 
   # Ask what cohort the user wishes to see
   puts "Please enter the cohort you wish to view hit return to view all students"
-  user_input = gets.strip.downcase.capitalize.to_sym
+  user_input = STDIN.gets.strip.downcase.capitalize.to_sym
 
   puts "\n\n\n"
   print_header
@@ -140,7 +140,7 @@ def interactive_menu
   # Create a repeating loop 
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -156,8 +156,8 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     # each line has student info in the form 'name,cohort'
     name, cohort = line.chomp.split(",") 
@@ -167,6 +167,18 @@ def load_students
   file.close
 end
 
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{@students.count} students from #{filename}"
+  else
+    puts "sorry, #{filename} does not exist"
+    exit
+  end
+end
 
 
+try_load_students
 interactive_menu
